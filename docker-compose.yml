@@ -7,3 +7,12 @@ services:
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
     command: start-dev
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./ngnix/ngnix.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - keycloak
