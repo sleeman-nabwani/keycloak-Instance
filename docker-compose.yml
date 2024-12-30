@@ -6,12 +6,7 @@ services:
     environment:
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
-    volumes:
-      - ./realm-config:/opt/keycloak/data/import
-    command:
-      - start-dev
-      - --import-realm
-    restart: unless-stopped
+    command: start-dev
 
   nginx:
     image: nginx:latest
