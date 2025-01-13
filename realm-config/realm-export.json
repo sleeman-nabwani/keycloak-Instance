@@ -50,6 +50,24 @@
   "roles": {
     "realm": [
       {
+        "id": "student-role",
+        "name": "student",
+        "description": "Student role",
+        "composite": false,
+        "clientRole": false,
+        "containerId": "betterGR",
+        "attributes": {}
+      },
+      {
+        "id": "staff-role",
+        "name": "staff",
+        "description": "Staff role",
+        "composite": false,
+        "clientRole": false,
+        "containerId": "betterGR",
+        "attributes": {}
+      },
+      {
         "id": "user-role",
         "name": "user",
         "description": "Basic user role",
@@ -482,26 +500,7 @@
   "webAuthnPolicyPasswordlessExtraOrigins": [],
   "users": [
     {
-      "username": "admin",
-      "enabled": true,
-      "email": "admin@bettergr.com",
-      "firstName": "Admin",
-      "lastName": "User",
-      "emailVerified": true,
-      "credentials": [
-        {
-          "type": "password",
-          "value": "admin123",
-          "temporary": false
-        }
-      ],
-      "realmRoles": [
-        "admin",
-        "user"
-      ],
-      "requiredActions": []
-    },
-    {
+      "id": "123456789",
       "username": "user1",
       "enabled": true,
       "email": "user1@bettergr.com",
@@ -516,11 +515,11 @@
         }
       ],
       "realmRoles": [
-        "user"
-      ],
-      "requiredActions": []
+        "student"
+      ]
     },
     {
+      "id": "987654321",
       "username": "user2",
       "enabled": true,
       "email": "user2@bettergr.com",
@@ -530,30 +529,32 @@
       "credentials": [
         {
           "type": "password",
-          "value": "user234",
+          "value": "user123",
           "temporary": false
         }
       ],
       "realmRoles": [
-        "user"
-      ],
-      "requiredActions": []
+        "student"
+      ]
     },
     {
-      "id": "d3cdbb1a-3b60-4594-a44e-c153dbb73a4e",
-      "username": "service-account-api-gateway",
-      "emailVerified": false,
-      "createdTimestamp": 1735405906495,
+      "id": "admin-id-789",
+      "username": "admin",
       "enabled": true,
-      "totp": false,
-      "serviceAccountClientId": "api-gateway",
-      "disableableCredentialTypes": [],
-      "requiredActions": [],
-      "realmRoles": [
-        "default-roles-bettergr"
+      "email": "admin@bettergr.com",
+      "firstName": "Admin",
+      "lastName": "User",
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "admin123",
+          "temporary": false
+        }
       ],
-      "notBefore": 0,
-      "groups": []
+      "realmRoles": [
+        "staff"
+      ]
     }
   ],
   "scopeMappings": [
