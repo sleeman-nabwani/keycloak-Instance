@@ -1,6 +1,7 @@
 {
   "id": "betterGR",
   "realm": "betterGR",
+  "loginTheme": "bettergr",
   "displayName": "BetterGR Realm",
   "displayNameHtml": "BetterGR Realm",
   "notBefore": 0,
@@ -734,7 +735,8 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "http://localhost:1234/*"
+        "http://localhost:1234/*",
+        "http://localhost:3000/*"
       ],
       "webOrigins": [
         "*"
