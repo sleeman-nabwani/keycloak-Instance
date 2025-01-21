@@ -735,11 +735,12 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "http://localhost:1234/*",
-        "http://localhost:3000/*"
+        "http://localhost:3000/*",
+        "http://localhost:3000/callback",
+        "http://localhost:1234/*"
       ],
       "webOrigins": [
-        "*"
+        "http://localhost:3000"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -2546,7 +2547,9 @@
     "oauth2DevicePollingInterval": "5",
     "parRequestUriLifespan": "60",
     "cibaInterval": "5",
-    "realmReusableOtpCode": "false"
+    "realmReusableOtpCode": "false",
+    "frontendUrl": "http://auth.bettergr.org",
+    "issuer": "http://auth.bettergr.org/realms/betterGR"
   },
   "keycloakVersion": "26.0.7",
   "userManagedAccessAllowed": false,
@@ -2557,4 +2560,5 @@
   "clientPolicies": {
     "policies": []
   }
+  
 }
