@@ -804,6 +804,7 @@
             "claim.name": "client_id",
             "jsonType.label": "String"
           }
+
         },
         {
           "name": "user id",
@@ -818,6 +819,7 @@
             "claim.name": "sub",
             "jsonType.label": "String"
           }
+
         }
       ],
       "defaultClientScopes": [
@@ -2560,5 +2562,4 @@
   "clientPolicies": {
     "policies": []
   }
-  
 }
