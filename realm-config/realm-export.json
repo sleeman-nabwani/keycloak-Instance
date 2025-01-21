@@ -1,6 +1,7 @@
 {
   "id": "betterGR",
   "realm": "betterGR",
+  "loginTheme": "bettergr",
   "displayName": "BetterGR Realm",
   "displayNameHtml": "BetterGR Realm",
   "notBefore": 0,
@@ -734,10 +735,12 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
+        "http://localhost:3000/*",
+        "http://localhost:3000/callback",
         "http://localhost:1234/*"
       ],
       "webOrigins": [
-        "*"
+        "http://localhost:3000"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -801,6 +804,7 @@
             "claim.name": "client_id",
             "jsonType.label": "String"
           }
+
         },
         {
           "name": "user id",
@@ -815,6 +819,7 @@
             "claim.name": "sub",
             "jsonType.label": "String"
           }
+
         }
       ],
       "defaultClientScopes": [
@@ -2544,7 +2549,9 @@
     "oauth2DevicePollingInterval": "5",
     "parRequestUriLifespan": "60",
     "cibaInterval": "5",
-    "realmReusableOtpCode": "false"
+    "realmReusableOtpCode": "false",
+    "frontendUrl": "http://auth.bettergr.org",
+    "issuer": "http://auth.bettergr.org/realms/betterGR"
   },
   "keycloakVersion": "26.0.7",
   "userManagedAccessAllowed": false,
