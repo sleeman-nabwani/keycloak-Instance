@@ -1,6 +1,7 @@
 {
   "id": "betterGR",
   "realm": "betterGR",
+  "loginTheme": "betterGR",
   "enabled": true,
   "defaultSignatureAlgorithm": "RS256",
   "roles": {
@@ -27,7 +28,7 @@
   },
   "clients": [
     {
-      "clientId": "api-gateway",
+      "clientId": "account",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
@@ -47,7 +48,7 @@
           "protocol": "openid-connect",
           "protocolMapper": "oidc-audience-mapper",
           "config": {
-            "included.client.audience": "api-gateway",
+            "included.client.audience": "account",
             "id.token.claim": "true",
             "access.token.claim": "true"
           }
