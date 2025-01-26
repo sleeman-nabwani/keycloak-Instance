@@ -1,0 +1,20 @@
+# Environment variables
+.env
+
+# Keycloak data directory
+data/
+
+# Logs
+*.log
+
+# Docker volumes
+volumes/
+
+# IDE specific files
+.idea/
+.vscode/
+*.iml
+
+# OS specific files
+.DS_Store
+Thumbs.db 
