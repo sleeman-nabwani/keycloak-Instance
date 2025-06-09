@@ -1,45 +1,66 @@
 services:
-  postgres:
+  db:
     image: postgres:17
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: keycloak
-      POSTGRES_USER: keycloak
-      POSTGRES_PASSWORD: keycloak
+    restart: always
     ports:
       - "5432:5432"
+    networks:
+      - back-tier
+    environment:
+      - POSTGRES_DB=keycloak
+      - POSTGRES_USER=keycloak
+      - POSTGRES_PASSWORD=keycloak
+      - POSTGRES_HOST_AUTH_METHOD=md5
+    volumes:
+      - keycloak_data:/var/lib/postgresql/data
+      - ./keycloak_dump.sql:/docker-entrypoint-initdb.d/01-keycloak_dump.sql
     healthcheck:
-      test: "pg_isready -U keycloak -d keycloak"
+      test: ["CMD-SHELL", "pg_isready -U keycloak -d keycloak"]
       interval: 5s
       timeout: 5s
-      retries: 5
+      retries: 20
 
   keycloak:
-    image: bettergr-keycloak:1.0
-    depends_on:
-      postgres:
-        condition: service_healthy
+    image: quay.io/keycloak/keycloak:latest
+    command: start-dev
     ports:
       - "8080:8080"
+    networks:
+      front-tier:
+        aliases:
+          - auth.bettergr.org
+      back-tier:
+        aliases:
+          - auth.bettergr.org
     environment:
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
-    volumes:
-      - ./realm-export.json:/opt/keycloak/data/import/realm.json
-    command:
-      - start-dev
-      - --import-realm
-    restart: unless-stopped
+      - KC_DB=postgres
+      - KC_DB_URL=jdbc:postgresql://db:5432/keycloak?sslmode=disable
+      - KC_DB_USERNAME=keycloak
+      - KC_DB_PASSWORD=keycloak
+      - KC_HOSTNAME=auth.bettergr.org
+      - KC_HOSTNAME_PORT=8080
+      - KC_HTTP_ENABLED=true
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure
 
   nginx:
     image: nginx:latest
     ports:
       - "80:80"
+    networks:
+      - front-tier
     volumes:
       - ./ngnix/ngnix.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - keycloak
 
+networks:
+  front-tier: {}
+  back-tier: {}
+
 volumes:
-  postgres_data:
+  keycloak_data:

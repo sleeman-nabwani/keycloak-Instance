@@ -3,6 +3,7 @@
 
 # Keycloak data directory
 data/
+keycloak_data/
 
 # Logs
 *.log
